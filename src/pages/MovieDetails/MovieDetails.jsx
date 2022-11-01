@@ -10,6 +10,7 @@ const navItems = [
   { to: 'cast', text: 'Cast' },
   { to: 'reviews', text: 'Reviews' },
 ];
+//!  href // label
 
 export const MovieDetails = () => {
   const params = useParams();
@@ -20,12 +21,15 @@ export const MovieDetails = () => {
 
     async function getMovieDetails() {
       const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
+      const templateUrl = `https://i.postimg.cc/htSNfpBY/movie-card-plug.jpg`;
       const movieDetails = await apiService.getMovieDetailsById(params.movieId);
 
       setMovie({
         genres: movieDetails.genres.map(genre => genre.name),
         title: movieDetails.original_title,
-        image: imageBaseUrl + movieDetails.poster_path,
+        image: movieDetails.poster_path
+          ? imageBaseUrl + movieDetails.poster_path
+          : templateUrl,
         overview: movieDetails.overview,
         rating: movieDetails.vote_average,
       });

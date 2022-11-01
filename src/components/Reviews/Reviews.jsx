@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Api } from 'services/Api';
+import { Review } from './Reviews.styled';
 
-// apiService.getMovieReviewsById(603);
+const apiService = new Api();
 
 export const Reviews = () => {
   const params = useParams();
+  const [reviews, setReviews] = useState(null);
+
+  useEffect(() => {
+    getReviews();
+
+    async function getReviews() {
+      const reviews = await apiService.getMovieReviewsById(params.movieId);
+      setReviews(reviews);
+    }
+  }, [params.movieId]);
 
   return (
     <div>
-      <p>We do not have any reviews for this movie</p>
-      <ul>
-        <li>review1 {params.movieId}</li>
-        <li>review1</li>
-        <li>review1</li>
-      </ul>
+      {reviews && reviews.length === 0 && (
+        <p>We do not have any reviews for this movie</p>
+      )}
+      {reviews && reviews.length !== 0 && (
+        <ul>
+          {reviews.map(({ author, content, id }) => {
+            return (
+              <Review key={id}>
+                <h3>{author}</h3>
+                <p>{content}</p>
+              </Review>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 };

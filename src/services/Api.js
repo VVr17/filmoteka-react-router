@@ -86,7 +86,7 @@ export class Api {
       const response = await axios.get(url, {
         params: { ...this.#params, page: 1 },
       });
-      console.log('response-review', response.data.results);
+      return response.data.results;
     } catch (error) {
       console.log(error);
     }

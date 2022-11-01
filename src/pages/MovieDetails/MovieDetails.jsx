@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { Api } from 'services/Api';
-import { MovieCard } from './MovieCard/MovieCard';
-import { AdditionalInfo, Container } from './MovieDetails.styled';
+import { MovieCard } from '../../components/MovieCard/MovieCard';
+import { AdditionalInfo, Container, LinkGoBack } from './MovieDetails.styled';
 
 const apiService = new Api();
 
@@ -34,6 +34,7 @@ export const MovieDetails = () => {
 
   return (
     <Container>
+      <LinkGoBack to="/">Go Back ??? </LinkGoBack>
       {movie && (
         <MovieCard
           genres={movie.genres}

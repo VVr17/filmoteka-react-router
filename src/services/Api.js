@@ -71,7 +71,7 @@ export class Api {
       const response = await axios.get(url, {
         params: { ...this.#params },
       });
-      console.log('response -cast', response.data.cast);
+      return response.data.cast;
     } catch (error) {
       console.log(error);
     }

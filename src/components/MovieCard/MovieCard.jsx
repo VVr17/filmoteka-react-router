@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Genres,
   ImageWrapper,
@@ -27,4 +28,12 @@ export const MovieCard = ({ genres, title, image, overview, rating }) => {
       </div>
     </MovieCardStyled>
   );
+};
+
+MovieCard.propTypes = {
+  genres: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
 };

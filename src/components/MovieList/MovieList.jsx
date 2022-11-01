@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MovieListStyled } from './MovieList.styled';
+import { object } from 'prop-types';
 
 export const MovieList = ({ movies, isMoviePage = false }) => {
   return (
@@ -18,4 +20,9 @@ export const MovieList = ({ movies, isMoviePage = false }) => {
           ))}
     </MovieListStyled>
   );
+};
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(object).isRequired,
+  isMoviePage: PropTypes.bool,
 };

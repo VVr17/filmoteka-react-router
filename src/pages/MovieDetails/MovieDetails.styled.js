@@ -9,13 +9,16 @@ export const AdditionalInfo = styled.div`
   h2 {
     font-size: 20px;
   }
+`;
 
-  ul {
-    margin-top: ${p => p.theme.space[3]}px;
-    margin-bottom: ${p => p.theme.space[3]}px;
-  }
+export const LinkList = styled.ul`
+  display: flex;
+  gap: 30px;
+  margin-top: ${p => p.theme.space[3]}px;
+  margin-bottom: ${p => p.theme.space[3]}px;
 
   a {
+    font-weight: 700;
     display: block;
     padding-top: ${p => p.theme.space[1]}px;
     padding-bottom: ${p => p.theme.space[1]}px;

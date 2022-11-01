@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { Api } from 'services/Api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
-import { AdditionalInfo, Container, LinkGoBack } from './MovieDetails.styled';
+import {
+  AdditionalInfo,
+  Container,
+  LinkGoBack,
+  LinkList,
+} from './MovieDetails.styled';
 
 const apiService = new Api();
 
@@ -50,13 +55,13 @@ export const MovieDetails = () => {
       )}
       <AdditionalInfo>
         <h2>Additional Information</h2>
-        <ul>
+        <LinkList>
           {navItems.map(({ to, text }) => (
             <li key={to}>
               <Link to={to}>{text}</Link>
             </li>
           ))}
-        </ul>
+        </LinkList>
         <Outlet />
       </AdditionalInfo>
     </Container>

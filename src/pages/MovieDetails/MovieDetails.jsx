@@ -1,25 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
+import { Api } from 'services/Api';
+import { MovieCard } from './MovieCard/MovieCard';
+import { AdditionalInfo, Container } from './MovieDetails.styled';
+
+const apiService = new Api();
 
 const navItems = [
   { to: 'cast', text: 'Cast' },
   { to: 'reviews', text: 'Reviews' },
 ];
+
 export const MovieDetails = () => {
   const params = useParams();
-  console.log('params', params.movieId);
+  const [movie, setMovie] = useState(null);
+
+  useEffect(() => {
+    getMovieDetails();
+
+    async function getMovieDetails() {
+      const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
+      const movieDetails = await apiService.getMovieDetailsById(params.movieId);
+
+      setMovie({
+        genres: movieDetails.genres.map(genre => genre.name),
+        title: movieDetails.original_title,
+        image: imageBaseUrl + movieDetails.poster_path,
+        overview: movieDetails.overview,
+        rating: movieDetails.vote_average,
+      });
+    }
+  }, [params.movieId]);
 
   return (
-    <main>
-      <div>MovieDetails {params.movieId}</div>
-      <ul>
-        {navItems.map(({ to, text }) => (
-          <Link key={to} to={to}>
-            {text}
-          </Link>
-        ))}
-      </ul>
-      <Outlet />
-    </main>
+    <Container>
+      {movie && (
+        <MovieCard
+          genres={movie.genres}
+          title={movie.title}
+          image={movie.image}
+          overview={movie.overview}
+          rating={movie.rating}
+        />
+      )}
+      <AdditionalInfo>
+        <h2>Additional Information</h2>
+        <ul>
+          {navItems.map(({ to, text }) => (
+            <li key={to}>
+              <Link to={to}>{text}</Link>
+            </li>
+          ))}
+        </ul>
+        <Outlet />
+      </AdditionalInfo>
+    </Container>
   );
 };
+
+// const LOCAL_STORAGE_KEY = 'genres'
+
+// const genres = useRef([]);
+
+// getGenres();
+// async function getGenres() {
+//   const genresFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
+//   if (genresFromLocalStorage) {
+//     genres.current = JSON.parse(genresFromLocalStorage);
+//     return;
+//   }
+//   try {
+//     genres.current = await apiService.getGenres();
+//     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(genres.current));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

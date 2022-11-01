@@ -2,20 +2,20 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const Header = styled.header`
-  /* min-height: 80px; */
-  padding: 20px;
+  padding: ${p => p.theme.space[4]}px;
   background-color: ${p => p.theme.colors.accentBackgroundColor};
 `;
 
 export const Link = styled(NavLink)`
-  padding: 10px;
+  padding-top: ${p => p.theme.space[2]}px;
+  padding-bottom: ${p => p.theme.space[2]}px;
   text-decoration: none;
   color: ${p => p.theme.colors.white};
   font-size: 20px;
   font-weight: 700;
 
   &:not(:last-of-type) {
-    margin-right: 20px;
+    margin-right: ${p => p.theme.space[4]}px;
   }
 
   &.active {

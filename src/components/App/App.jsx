@@ -22,13 +22,3 @@ export const App = () => {
     </>
   );
 };
-
-// HEADER
-
-// Route
-
-// page1 -- component Home    '/';
-// page1 -- component Movies   '/movies'
-// page 3 -- component  MovieDetails     '/movies/:movieId'  ==>
-//   /movies/:movieId/cast  -->   Cast
-//  /movies/:movieId/reviews

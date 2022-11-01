@@ -3,7 +3,6 @@ export const breakpoints = ['480', '768', '1280'];
 export const theme = Object.freeze({
   colors: {
     white: '#ffffff',
-    red: '#8e1600',
     accent: '#987045',
     secondaryColor: '#00554e',
     muted: '#f6f6f6',

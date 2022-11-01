@@ -1,5 +1,12 @@
 import React from 'react';
 
+// apiService.getMovieCreditsById(603);
 export const Cast = () => {
-  return <div>Cast</div>;
+  return (
+    <ul>
+      <li>cast</li>
+      <li>cast</li>
+      <li>cast</li>
+    </ul>
+  );
 };

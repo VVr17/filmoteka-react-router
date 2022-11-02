@@ -4,18 +4,26 @@ import { Link } from 'react-router-dom';
 import { MovieListStyled } from './MovieList.styled';
 import { object } from 'prop-types';
 
-export const MovieList = ({ movies, isMoviePage = false }) => {
+export const MovieList = ({
+  movies,
+  isMoviePage = false,
+  previousLocation,
+}) => {
   return (
     <MovieListStyled>
       {isMoviePage
         ? movies.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`${id}`}>{title}</Link>
+              <Link to={`${id}`} state={{ from: `${previousLocation}` }}>
+                {title}
+              </Link>
             </li>
           ))
         : movies.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`movies/${id}`}>{title}</Link>
+              <Link to={`movies/${id}`} state={{ from: `${previousLocation}` }}>
+                {title}
+              </Link>
             </li>
           ))}
     </MovieListStyled>
@@ -25,4 +33,5 @@ export const MovieList = ({ movies, isMoviePage = false }) => {
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(object).isRequired,
   isMoviePage: PropTypes.bool,
+  previousLocation: PropTypes.string.isRequired,
 };

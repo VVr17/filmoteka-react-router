@@ -1,6 +1,6 @@
 import { FALLBACK_IMAGE_URL, IMAGE_BASE_API_URL } from 'constants/constants';
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { apiService } from 'services/Api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import {
@@ -11,14 +11,17 @@ import {
 } from './MovieDetails.styled';
 
 const navItems = [
-  { to: 'cast', text: 'Cast' },
-  { to: 'reviews', text: 'Reviews' },
+  { href: 'cast', label: 'Cast' },
+  { href: 'reviews', label: 'Reviews' },
 ];
-//!  href // label
 
 export const MovieDetails = () => {
-  const params = useParams();
+  const params = useParams(); // from <Route path="movies/:movieId" element={<MovieDetails />}>
   const [movie, setMovie] = useState(null);
+  const location = useLocation(); // location according to URL
+  /* go back to previous page OR default Home page if location null*/
+  const previousPage = useRef(location?.state?.from ?? '/');
+  console.log('location', previousPage);
 
   useEffect(() => {
     getMovieDetails();
@@ -40,7 +43,7 @@ export const MovieDetails = () => {
 
   return (
     <Container>
-      <LinkGoBack to="/">Go Back ??? </LinkGoBack>
+      <LinkGoBack to={previousPage.current}>Go Back</LinkGoBack>
       {movie && (
         <MovieCard
           genres={movie.genres}
@@ -53,9 +56,9 @@ export const MovieDetails = () => {
       <AdditionalInfo>
         <h2>Additional Information</h2>
         <LinkList>
-          {navItems.map(({ to, text }) => (
-            <li key={to}>
-              <Link to={to}>{text}</Link>
+          {navItems.map(({ href, label }) => (
+            <li key={href}>
+              <Link to={href}>{label}</Link>
             </li>
           ))}
         </LinkList>
@@ -64,22 +67,3 @@ export const MovieDetails = () => {
     </Container>
   );
 };
-
-// const LOCAL_STORAGE_KEY = 'genres'
-
-// const genres = useRef([]);
-
-// getGenres();
-// async function getGenres() {
-//   const genresFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
-//   if (genresFromLocalStorage) {
-//     genres.current = JSON.parse(genresFromLocalStorage);
-//     return;
-//   }
-//   try {
-//     genres.current = await apiService.getGenres();
-//     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(genres.current));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }

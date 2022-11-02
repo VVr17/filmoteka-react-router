@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 import { apiService } from 'services/Api';
 import { Container } from './Home.styled';
 import { MovieList } from 'components/MovieList/MovieList';
+import { useLocation } from 'react-router-dom';
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  // console.log('location', location.pathname);
 
   useEffect(() => {
     getPopularMovies();
@@ -23,7 +26,9 @@ export const Home = () => {
   return (
     <Container>
       <h2>Trending Today</h2>
-      {movies.length > 0 && <MovieList movies={movies} />}
+      {movies.length > 0 && (
+        <MovieList movies={movies} previousLocation={location.pathname} />
+      )}
     </Container>
   );
 };

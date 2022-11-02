@@ -10,6 +10,7 @@ const Movies = () => {
   const [movies, setMovies] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  console.log('query', query);
   const query = searchParams.get('query');
 
   useEffect(() => {
@@ -40,6 +41,8 @@ const Movies = () => {
     setSearchParams({ query: queryTrimmed });
     event.target.reset();
   };
+
+  if (movies) return null;
 
   return (
     <Container>

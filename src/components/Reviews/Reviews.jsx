@@ -16,12 +16,12 @@ export const Reviews = () => {
     }
   }, [params.movieId]);
 
+  if (!reviews) return null;
+
   return (
     <>
-      {reviews && reviews.length === 0 && (
-        <p>We do not have any reviews for this movie</p>
-      )}
-      {reviews && reviews.length !== 0 && (
+      {reviews.length === 0 && <p>We do not have any reviews for this movie</p>}
+      {reviews.length !== 0 && (
         <ReviewList>
           {reviews.map(({ author, content, id }) => {
             return (

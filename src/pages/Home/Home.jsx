@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 export const Home = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
-  // console.log('location', location.pathname);
 
   useEffect(() => {
     getPopularMovies();

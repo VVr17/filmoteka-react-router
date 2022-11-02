@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { apiService } from 'services/Api';
-import { Container, SearchingForm } from './Movies.styled';
+import { Container } from './Movies.styled';
 import { MovieList } from 'components/MovieList/MovieList';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
   const location = useLocation();
-  // console.log('location', location.pathname + location.search);
+  const query = searchParams.get('query');
 
   useEffect(() => {
     if (!query) return;
@@ -43,16 +43,7 @@ export const Movies = () => {
 
   return (
     <Container>
-      <SearchingForm onSubmit={onSubmit}>
-        <label>
-          Search
-          <input
-            name="query"
-            type="text"
-            placeholder="Please, enter keyword for searching"
-          />
-        </label>
-      </SearchingForm>
+      <SearchForm onSubmit={onSubmit} />
       {!query && <p>Please, enter query to find movies</p>}
       {movies.length === 0 && query && (
         <p>There are no movies found. Please, try again</p>

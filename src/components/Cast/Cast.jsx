@@ -20,25 +20,23 @@ export const Cast = () => {
     }
   }, [params.movieId]);
 
+  if (!cast) return null;
+
   return (
-    <>
-      {cast && (
-        <CastList>
-          {cast.map(({ id, profile_path, character, original_name }) => (
-            <li key={id}>
-              <ActorCard
-                image={
-                  profile_path
-                    ? IMAGE_BASE_API_URL + profile_path
-                    : FALLBACK_IMAGE_URL
-                }
-                name={original_name}
-                character={character}
-              />
-            </li>
-          ))}
-        </CastList>
-      )}
-    </>
+    <CastList>
+      {cast.map(({ id, profile_path, character, original_name }) => (
+        <li key={id}>
+          <ActorCard
+            image={
+              profile_path
+                ? IMAGE_BASE_API_URL + profile_path
+                : FALLBACK_IMAGE_URL
+            }
+            name={original_name}
+            character={character}
+          />
+        </li>
+      ))}
+    </CastList>
   );
 };

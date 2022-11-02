@@ -21,38 +21,41 @@ export const MovieDetails = () => {
   const location = useLocation(); // location according to URL
   /* go back to previous page OR default Home page if location null*/
   const previousPage = useRef(location?.state?.from ?? '/');
-  console.log('location', previousPage);
 
   useEffect(() => {
     getMovieDetails();
 
     async function getMovieDetails() {
       const movieDetails = await apiService.getMovieDetailsById(params.movieId);
+      const { genres, original_title, poster_path, overview, vote_average } =
+        movieDetails;
 
       setMovie({
-        genres: movieDetails.genres.map(genre => genre.name),
-        title: movieDetails.original_title,
-        image: movieDetails.poster_path
-          ? IMAGE_BASE_API_URL + movieDetails.poster_path
+        genres: genres.map(genre => genre.name),
+        title: original_title,
+        image: poster_path
+          ? IMAGE_BASE_API_URL + poster_path
           : FALLBACK_IMAGE_URL,
-        overview: movieDetails.overview,
-        rating: movieDetails.vote_average,
+        overview: overview,
+        rating: vote_average,
       });
     }
   }, [params.movieId]);
 
+  if (!movie) return null;
+
+  const { genres, title, image, overview, rating } = movie;
+
   return (
     <Container>
       <LinkGoBack to={previousPage.current}>Go Back</LinkGoBack>
-      {movie && (
-        <MovieCard
-          genres={movie.genres}
-          title={movie.title}
-          image={movie.image}
-          overview={movie.overview}
-          rating={movie.rating}
-        />
-      )}
+      <MovieCard
+        genres={genres}
+        title={title}
+        image={image}
+        overview={overview}
+        rating={rating}
+      />
       <AdditionalInfo>
         <h2>Additional Information</h2>
         <LinkList>

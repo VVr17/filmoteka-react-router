@@ -1,5 +1,5 @@
 import { FALLBACK_IMAGE_URL, IMAGE_BASE_API_URL } from 'constants/constants';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { apiService } from 'services/Api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
@@ -15,7 +15,7 @@ const navItems = [
   { href: 'reviews', label: 'Reviews' },
 ];
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const params = useParams(); // from <Route path="movies/:movieId" element={<MovieDetails />}>
   const [movie, setMovie] = useState(null);
   const location = useLocation(); // location according to URL
@@ -65,8 +65,12 @@ export const MovieDetails = () => {
             </li>
           ))}
         </LinkList>
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </AdditionalInfo>
     </Container>
   );
 };
+
+export default MovieDetails;

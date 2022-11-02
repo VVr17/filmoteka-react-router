@@ -6,7 +6,7 @@ import { Container } from './Movies.styled';
 import { MovieList } from 'components/MovieList/MovieList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -44,7 +44,6 @@ export const Movies = () => {
   return (
     <Container>
       <SearchForm onSubmit={onSubmit} />
-      {!query && <p>Please, enter query to find movies</p>}
       {movies.length === 0 && query && (
         <p>There are no movies found. Please, try again</p>
       )}
@@ -58,3 +57,5 @@ export const Movies = () => {
     </Container>
   );
 };
+
+export default Movies;

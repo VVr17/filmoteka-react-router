@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { apiService } from 'services/Api';
 import { ReviewList } from './Reviews.styled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const params = useParams();
   const [reviews, setReviews] = useState(null);
 
@@ -36,3 +36,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

@@ -6,7 +6,7 @@ import { apiService } from 'services/Api';
 import { ActorCard } from './ActorCard/ActorCard';
 import { CastList } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState(null);
   const params = useParams();
 
@@ -40,3 +40,5 @@ export const Cast = () => {
     </CastList>
   );
 };
+
+export default Cast;

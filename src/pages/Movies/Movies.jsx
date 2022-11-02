@@ -51,11 +51,14 @@ const Movies = () => {
     <Container>
       <SearchForm onSubmit={onSubmit} />
       {movies.length > 0 && (
-        <MovieList
-          movies={movies}
-          isMoviePage={true}
-          previousLocation={location.pathname + location.search}
-        />
+        <>
+          <h2>Upon your query "{query}" we found</h2>
+          <MovieList
+            movies={movies}
+            isMoviePage={true}
+            previousLocation={location.pathname + location.search}
+          />
+        </>
       )}
     </Container>
   );

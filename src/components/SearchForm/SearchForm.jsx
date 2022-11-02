@@ -5,7 +5,6 @@ import { SearchingFormStyled } from './SearchForm.styled';
 export const SearchForm = ({ onSubmit }) => (
   <SearchingFormStyled onSubmit={onSubmit}>
     <label>
-      Search
       <input
         name="query"
         type="text"

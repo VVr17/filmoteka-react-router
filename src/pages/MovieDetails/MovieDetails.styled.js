@@ -8,6 +8,7 @@ export const Container = styled.main`
 export const AdditionalInfo = styled.div`
   h2 {
     font-size: 20px;
+    color: ${p => p.theme.colors.accentTextColor};
   }
 `;
 
@@ -36,10 +37,12 @@ export const LinkGoBack = styled(Link)`
   max-width: 140px;
   padding: ${p => p.theme.space[1]}px;
   border: 1px solid ${p => p.theme.colors.accentTextColor};
-  color: ${p => p.theme.colors.accentTextColor};
+  color: ${p => p.theme.colors.white};
+  font-weight: 500;
   border-radius: 4px;
   margin-bottom: ${p => p.theme.space[3]}px;
   text-align: center;
+  background-color: ${p => p.theme.colors.accentBackgroundColor};
 
   &:hover,
   &:focus {

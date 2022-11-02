@@ -16,9 +16,12 @@ export const Card = styled.div`
   p {
     padding-top: ${p => p.theme.space[2]}px;
     padding-bottom: ${p => p.theme.space[2]}px;
+    font-weight: 500;
   }
 
   span {
+    margin-top: ${p => p.theme.space[1]}px;
     display: block;
+    font-weight: 400;
   }
 `;

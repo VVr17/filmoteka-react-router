@@ -5,6 +5,7 @@ import { apiService } from 'services/Api';
 import { Container } from './Movies.styled';
 import { MovieList } from 'components/MovieList/MovieList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
+import { toast } from 'react-toastify'; // Notifications
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -20,6 +21,11 @@ const Movies = () => {
     async function getMovies(query) {
       try {
         const results = await apiService.searchByKeyWord(query);
+
+        if (results.length === 0) {
+          toast.warn(`There are no movies found. Please, try again`);
+        }
+
         setMovies([...results]);
       } catch (error) {
         console.log(error);

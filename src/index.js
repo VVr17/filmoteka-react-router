@@ -4,9 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from 'components/App/App';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from 'constants/theme';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
-
-// <BrowserRouter basename="/goit-react-hw-05-movies/"> - for GitHub
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

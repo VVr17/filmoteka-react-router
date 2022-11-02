@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from 'components/Layout/Layout';
+import { ToastContainer } from 'react-toastify';
 
 const Cast = lazy(() => import('../Cast/Cast'));
 const MovieDetails = lazy(() =>
@@ -23,6 +24,7 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
+      <ToastContainer autoClose={3000} theme="colored" />
     </>
   );
 };

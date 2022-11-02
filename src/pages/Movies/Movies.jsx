@@ -42,7 +42,7 @@ const Movies = () => {
     event.target.reset();
   };
 
-  if (movies) return null;
+  if (!movies) return null;
 
   return (
     <Container>

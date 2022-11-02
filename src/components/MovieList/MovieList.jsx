@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { MovieListStyled } from './MovieList.styled';
-import { object } from 'prop-types';
 
 export const MovieList = ({
   movies,
@@ -31,7 +30,7 @@ export const MovieList = ({
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(object).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   isMoviePage: PropTypes.bool,
   previousLocation: PropTypes.string.isRequired,
 };

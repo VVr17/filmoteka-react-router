@@ -39,7 +39,7 @@ const Movies = () => {
     const queryTrimmed = query.value.trim();
 
     if (!queryTrimmed) {
-      alert('query field cannot be empty');
+      toast.warn(`Query field cannot be empty`);
       return;
     }
 

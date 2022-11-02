@@ -1,12 +1,10 @@
+import { FALLBACK_IMAGE_URL, IMAGE_BASE_API_URL } from 'constants/constants';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
+import { apiService } from 'services/Api';
 import { ActorCard } from './ActorCard/ActorCard';
 import { CastList } from './Cast.styled';
-const apiService = new Api();
-const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
-const templateUrl = `https://i.postimg.cc/htSNfpBY/movie-card-plug.jpg`;
 
 export const Cast = () => {
   const [cast, setCast] = useState(null);
@@ -29,7 +27,11 @@ export const Cast = () => {
           {cast.map(({ id, profile_path, character, original_name }) => (
             <li key={id}>
               <ActorCard
-                image={profile_path ? imageBaseUrl + profile_path : templateUrl}
+                image={
+                  profile_path
+                    ? IMAGE_BASE_API_URL + profile_path
+                    : FALLBACK_IMAGE_URL
+                }
                 name={original_name}
                 character={character}
               />

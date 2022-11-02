@@ -1,13 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { Api } from 'services/Api';
+import { apiService } from 'services/Api';
 import { Container, SearchingForm } from './Movies.styled';
 import { MovieList } from 'components/MovieList/MovieList';
 
 // ! на search должны добавляться параметры
 //! ?query=batman
-
-const apiService = new Api();
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);

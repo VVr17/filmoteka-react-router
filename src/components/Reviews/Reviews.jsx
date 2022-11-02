@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
+import { apiService } from 'services/Api';
 import { ReviewList } from './Reviews.styled';
-
-const apiService = new Api();
 
 export const Reviews = () => {
   const params = useParams();

@@ -1,6 +1,7 @@
+import { FALLBACK_IMAGE_URL, IMAGE_BASE_API_URL } from 'constants/constants';
 import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { Api } from 'services/Api';
+import { apiService } from 'services/Api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import {
   AdditionalInfo,
@@ -8,8 +9,6 @@ import {
   LinkGoBack,
   LinkList,
 } from './MovieDetails.styled';
-
-const apiService = new Api();
 
 const navItems = [
   { to: 'cast', text: 'Cast' },
@@ -25,16 +24,14 @@ export const MovieDetails = () => {
     getMovieDetails();
 
     async function getMovieDetails() {
-      const imageBaseUrl = `https://image.tmdb.org/t/p/w500`;
-      const templateUrl = `https://i.postimg.cc/htSNfpBY/movie-card-plug.jpg`;
       const movieDetails = await apiService.getMovieDetailsById(params.movieId);
 
       setMovie({
         genres: movieDetails.genres.map(genre => genre.name),
         title: movieDetails.original_title,
         image: movieDetails.poster_path
-          ? imageBaseUrl + movieDetails.poster_path
-          : templateUrl,
+          ? IMAGE_BASE_API_URL + movieDetails.poster_path
+          : FALLBACK_IMAGE_URL,
         overview: movieDetails.overview,
         rating: movieDetails.vote_average,
       });

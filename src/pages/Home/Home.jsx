@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Api } from 'services/Api';
+import { apiService } from 'services/Api';
 import { Container } from './Home.styled';
 import { MovieList } from 'components/MovieList/MovieList';
-const apiService = new Api();
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);

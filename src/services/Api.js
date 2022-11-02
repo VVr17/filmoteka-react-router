@@ -1,28 +1,22 @@
 import axios from 'axios';
+import {
+  API_KEY,
+  BASE_URL,
+  GET_CREDIT_URL,
+  GET_MOVIE_DETAILS_PATH_URL,
+  GET_REVIEWS_URL,
+  SEARCH_PATH_URL,
+  TRENDING_PATH_URL,
+} from 'constants/constants';
 
-export class Api {
-  #API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
-  #BASE_URL = 'https://api.themoviedb.org/3/';
-  #GENRES_PATH_URL = 'genre/movie/list';
-  #TRENDING_PATH_URL = 'trending/movie/day';
-  #SEARCH_PATH_URL = 'search/movie';
-  #GET_MOVIE_DETAILS_PATH_URL = 'movie/';
-
+class Api {
   #params = {
-    api_key: this.#API_KEY,
+    api_key: API_KEY,
     language: 'en-US',
   };
 
-  async getGenres() {
-    const url = `${this.#BASE_URL}${this.#GENRES_PATH_URL}`;
-    const response = await axios(url, {
-      params: { ...this.#params },
-    });
-    return response.data.genres;
-  }
-
   async getTrendingMovies() {
-    const url = `${this.#BASE_URL}${this.#TRENDING_PATH_URL}`;
+    const url = `${BASE_URL}${TRENDING_PATH_URL}`;
 
     try {
       const response = await axios.get(url, {
@@ -35,7 +29,7 @@ export class Api {
   }
 
   async searchByKeyWord(query) {
-    const url = `${this.#BASE_URL}${this.#SEARCH_PATH_URL}`;
+    const url = `${BASE_URL}${SEARCH_PATH_URL}`;
 
     try {
       const response = await axios.get(url, {
@@ -48,9 +42,7 @@ export class Api {
   }
 
   async getMovieDetailsById(movieId) {
-    const url = `${this.#BASE_URL}${
-      this.#GET_MOVIE_DETAILS_PATH_URL
-    }${movieId}`;
+    const url = `${BASE_URL}${GET_MOVIE_DETAILS_PATH_URL}${movieId}`;
 
     try {
       const response = await axios.get(url, {
@@ -63,9 +55,7 @@ export class Api {
   }
 
   async getMovieCreditsById(movieId) {
-    const url = `${this.#BASE_URL}${
-      this.#GET_MOVIE_DETAILS_PATH_URL
-    }${movieId}/credits`;
+    const url = `${BASE_URL}${GET_MOVIE_DETAILS_PATH_URL}${movieId}${GET_CREDIT_URL}`;
 
     try {
       const response = await axios.get(url, {
@@ -78,9 +68,7 @@ export class Api {
   }
 
   async getMovieReviewsById(movieId) {
-    const url = `${this.#BASE_URL}${
-      this.#GET_MOVIE_DETAILS_PATH_URL
-    }${movieId}/reviews`;
+    const url = `${BASE_URL}${GET_MOVIE_DETAILS_PATH_URL}${movieId}${GET_REVIEWS_URL}`;
 
     try {
       const response = await axios.get(url, {
@@ -92,3 +80,5 @@ export class Api {
     }
   }
 }
+
+export const apiService = new Api();

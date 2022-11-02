@@ -1,0 +1,9 @@
+export const API_KEY = '1351fe1fee33f4dc7ca86c3a4fb4a61c';
+export const BASE_URL = 'https://api.themoviedb.org/3/';
+export const TRENDING_PATH_URL = 'trending/movie/day';
+export const SEARCH_PATH_URL = 'search/movie';
+export const GET_MOVIE_DETAILS_PATH_URL = 'movie/';
+export const GET_CREDIT_URL = '/credits';
+export const GET_REVIEWS_URL = '/reviews';
+export const IMAGE_BASE_API_URL = `https://image.tmdb.org/t/p/w500`;
+export const FALLBACK_IMAGE_URL = `https://i.postimg.cc/htSNfpBY/movie-card-plug.jpg`;

@@ -7,7 +7,7 @@ import { MovieList } from 'components/MovieList/MovieList';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const query = searchParams.get('query');

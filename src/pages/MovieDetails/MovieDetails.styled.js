@@ -23,6 +23,7 @@ export const LinkList = styled.ul`
     display: block;
     padding-top: ${p => p.theme.space[1]}px;
     padding-bottom: ${p => p.theme.space[1]}px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
@@ -43,6 +44,7 @@ export const LinkGoBack = styled(Link)`
   margin-bottom: ${p => p.theme.space[3]}px;
   text-align: center;
   background-color: ${p => p.theme.colors.accentBackgroundColor};
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {

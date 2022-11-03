@@ -5,8 +5,7 @@ export const MovieCardStyled = styled.div`
   padding: ${p => p.theme.space[3]}px;
   /* display: flex; */
   border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 1), -23px 0 20px -23px rgba(0, 0, 0, 0.8),
-    23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1);
+  box-shadow: ${p => p.theme.boxShadow.second};
 
   @media screen and (min-width: 768px) {
     display: flex;

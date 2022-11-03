@@ -15,7 +15,6 @@ export const theme = Object.freeze({
     mainBackgroundColor: '#f5f4fa',
     accentBackgroundColor: '#03453b',
     backgroundContactCardColor: 'rgba(247, 227, 201, 0.2)',
-    bgErrorColor: ' rgba(142, 22, 0, 0.08)',
     btnShadowColor: 'rgba(0, 0, 0, 0.15)',
   },
 
@@ -25,26 +24,6 @@ export const theme = Object.freeze({
     normal: 400,
     semiBold: 600,
     bold: 700,
-  },
-
-  fontSizes: {
-    xs: '12px',
-    s: '16px',
-    m: '24px',
-    l: '32px',
-    xl: '64px',
-  },
-
-  borders: {
-    none: 'none',
-    normal: '1px solid',
-  },
-
-  radii: {
-    none: '0',
-    normal: '4px',
-    custom: '0px 0px 4px 4px',
-    round: '50%',
   },
 
   boxShadow: {
